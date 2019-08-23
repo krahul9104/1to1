@@ -1,6 +1,9 @@
 # dependencies
 node_modules/
 
+1to1/server/webServices/nodemon.json
+/server/webServices/nodemon.json
+
 # testing
 /coverage
 
@@ -14,5 +17,6 @@ node_modules/
 .env.test.local
 .env.production.local
 
-app.js
 npm-debug.log*
+
+
