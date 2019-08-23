@@ -1,0 +1,21 @@
+1.clone the code from the GIT.
+2. open terminal and go to the "webSerevices" folder.
+3. run the folder commmd to install the node required package
+    npm install <package.json file path>
+
+4. run the following cmd to start server.
+    npm start  
+    
+       
+goal payload:- 
+   {  "_id": 1,
+    "name": "test",
+    "description": "test",
+    "type":  'org',,
+    "active": true,
+    "quater":"Q1",
+    "year":2019,
+    "points": 5,
+    "employeeId": "" ,
+    "orgId": 1 
+   }

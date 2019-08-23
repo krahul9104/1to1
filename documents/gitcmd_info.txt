@@ -1,0 +1,2 @@
+1. go to the project directory and run cmd :- git init
+2.
