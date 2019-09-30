@@ -1,2 +1,23 @@
-1. go to the project directory and run cmd :- git init
-2.
+1 .Fork the git project https://github.com/krahul9104/1to1.git to your github account.
+2. Clone the git project from your account onto your machine.
+    git clone https://github.com/mdabdulkhaliq/1to1.git
+3. Set upstream to the source github repo
+    git remote add upstream https://github.com/krahul9104/1to1.git
+4. Move to the master branch on your local machine
+    git checkout master
+5. Sync your local machine git repo with source git repo
+    git pull upstream master
+6. Sync your local machine git repo with your github repo.
+    git push origin master
+7. Create branch and make your changes on it.
+    git checkout -b branch-name
+8. Push your branch changes to your github repo
+    git push -u origin branch-name
+9. Goto your github repo and create a pull request.
+10. Once the source github repo owners review your code and approve, they will pull your changes into the source repo's master branch.
+11. Navigate to master branch on your local
+    git checkout master
+12. Sync your repo with source repo's master
+    git pull upstream master
+13. Sync your github repo master with local master.
+    git push origin master
