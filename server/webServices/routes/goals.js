@@ -3,10 +3,11 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const goalsController = require('../controllers/goals');
+const checkAuth = require('../middleware/check_auth');
 
 
 
-router.get('/', goalsController.goals_get_all);
+router.get('/', checkAuth, goalsController.goals_get_all);
 
 router.get('/:goalId', goalsController.goals_get_by_ID);
 

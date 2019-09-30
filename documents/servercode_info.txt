@@ -6,7 +6,38 @@
 4. run the following cmd to start server.
     npm start  
     
-       
+Sample payloads:- 
+employee:-
+  {"_id": 1,
+    "userName": "RK",
+    "firstName": "R",
+    "lastName": "K",
+    "email": "rk@gmail.com",
+    "active": true,
+    "startDate":"01/01/2019",
+    "endDate": "",
+    "managerId":1,
+    "orgId": 1,
+    "role": "IC1",
+    "designation": 1
+    }
+
+
+
+
+organization:- 
+  {  "_id": 1,
+    "name": "Main ORG",
+    "description": "Main ORG",
+    "orgEmail": "mainorg@gmail.com",
+    "active": true,
+    "startDate": "01/01/2019",
+    "endDate": "01/01/2019",
+    "managerId":1
+  }
+
+
+
 goal payload:- 
    {  "_id": 1,
     "name": "test",

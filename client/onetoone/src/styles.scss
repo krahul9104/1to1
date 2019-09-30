@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    >.col,
+    >[class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+$spaceamounts: (5, 10, 15, 20, 25, 30);
+$sides: (top, bottom, left, right, all);
+@each $space in $spaceamounts {
+    @each $side in $sides {
+        @if $side=='all' {
+            .m#{$space} {
+                margin: #{$space}px;
+            }
+            .p#{$space} {
+                padding: #{$space}px;
+            }
+        }
+        @else {
+            .m#{str-slice($side, 0, 1)}#{$space} {
+                margin-#{$side}: #{$space}px;
+            }
+            .p#{str-slice($side, 0, 1)}#{$space} {
+                padding-#{$side}: #{$space}px;
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<div class="p10 border border-secondary rounded">
+    <div class="text-white bg-info p5">
+        <h5>Upcoming Events</h5>
+    </div>
+    <div *ngFor="let goal of userGoals">
+        <div class="border-bottom p5">{{goal.name}}</div>
+    </div>
+</div>

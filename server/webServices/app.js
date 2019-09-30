@@ -24,7 +24,8 @@ app.use((req, res, next) => {
 const employeeRoute = require('../webServices/routes/employees');
 const orgRoute = require('../webServices/routes/organization');
 const goalRoute = require('../webServices/routes/goals');
-//const orgRoute = require('./api/routes/organizations');
+const user = require('../webServices/routes/user');
+const oneonone = require('../webServices/routes/oneonone_review');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -34,6 +35,8 @@ app.use(bodyParser.json());
 app.use('/employees', employeeRoute);
 app.use('/organization', orgRoute);
 app.use('/goals', goalRoute);
+app.use('/user', user);
+app.use('/oneonone', oneonone);
 
 app.use((req, res, next) => {
     const err = new Error('Page Not Found');

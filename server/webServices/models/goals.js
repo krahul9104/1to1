@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const goalsSchema = mongoose.Schema({
     _id: { type: Number, required: true },
     name: { type: String, required: true },
@@ -10,8 +9,8 @@ const goalsSchema = mongoose.Schema({
     quater: { type: String, required: true },
     year: { type: String, required: true },
     points: { type: Number, required: true },
-    employeeId: { type: Number, required: function() { return this.type !== 'org'; } },
-    orgId: { type: Number, required: function() { return this.type === 'org'; } }
+    employeeId: { type: Number, required: function() { return this.type !== 'org'; }, ref: 'Employee' },
+    orgId: { type: Number, required: function() { return this.type === 'org'; }, ref: 'Organization' }
 }, {
     strict: true
 });

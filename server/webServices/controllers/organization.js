@@ -1,6 +1,6 @@
 const Organization = require("../models/organization");
 
-exports.goals_get_all = (req, res, next) => {
+exports.org_get_all = (req, res, next) => {
     Organization.find()
         .exec()
         .then(data => {
@@ -15,7 +15,7 @@ exports.goals_get_all = (req, res, next) => {
         });
 };
 
-exports.goals_post = (req, res, next) => {
+exports.org_post = (req, res, next) => {
     const organization = new Organization(req.body);
     organization
         .save()
@@ -27,9 +27,12 @@ exports.goals_post = (req, res, next) => {
         });
 };
 
-exports.goals_patch = (req, res, next) => {
+exports.org_patch = (req, res, next) => {
     const organizationId = req.params.organizationId;
-    Organization.update({ _id: organizationId }, { $set: req.body })
+    const inputJsonObj = req.body;
+    if (inputJsonObj.hasOwnProperty("_id")) delete inputJsonObj["_id"];
+
+    Organization.update({ _id: organizationId }, { $set: inputJsonObj })
         .then(result => {
             res.status(200).json(result);
         })
@@ -38,7 +41,7 @@ exports.goals_patch = (req, res, next) => {
         });
 };
 
-exports.goals_get_by_ID = (req, res, next) => {
+exports.org_get_by_ID = (req, res, next) => {
     const organizationId = req.params.organizationId;
     Organization.findById(organizationId)
         .exec()
@@ -50,7 +53,7 @@ exports.goals_get_by_ID = (req, res, next) => {
         });
 };
 
-exports.goals_delete_by_ID = (req, res, next) => {
+exports.orgs_delete_by_ID = (req, res, next) => {
     const organizationId = req.params.organizationId;
     Organization.remove({ _id: organizationId })
         .exec()
