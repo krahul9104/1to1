@@ -1,0 +1,226 @@
+<div>
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+                <div>
+                    <h3 class=".md-title">Create Employee</h3>
+                </div>
+            </mat-expansion-panel-header>
+            <mat-card>
+                <form [formGroup]="employeeForm" class="" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <input matInput placeholder="First Name*" formControlName="firstName" />
+                                <mat-error>This filed is mandatory.</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <input matInput placeholder="Last Name*" formControlName="lastName" />
+                                <mat-error>This filed is mandatory.</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <input matInput placeholder="Email Id*" formControlName="email" />
+                                <mat-error *ngIf="employeeForm.controls['email'].errors?.required">This filed is mandatory.</mat-error>
+                                <mat-error *ngIf="employeeForm.controls['email'].errors?.email">Invalid Email</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <input matInput [matDatepicker]="picker" placeholder="Joining Date*" formControlName="startDate" />
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error>This filed is mandatory.</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <mat-label>Organization*</mat-label>
+                                <mat-select matNativeControl formControlName="orgId">
+                                    <mat-option value="">Choose Organization</mat-option>
+                                    <ng-template [ngIf]="orgsDS$?.length > 0">
+                                        <mat-option *ngFor="let org of orgsDS$" [value]="org._id">
+                                            {{ org.name }}
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <mat-label>Department*</mat-label>
+                                <mat-select matNativeControl formControlName="departmentId">
+                                    <mat-option value="">Choose Departments</mat-option>
+                                    <ng-template [ngIf]="departmentDS$?.length > 0">
+                                        <mat-option *ngFor="let dept of departmentDS$" [value]="dept._id">
+                                            {{ dept.name }}
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <mat-label>Department Type *</mat-label>
+                                <mat-select matNativeControl formControlName="departmentTypeId">
+                                    <mat-option value="">Department Type</mat-option>
+                                    <ng-template [ngIf]="departmentTypeDS$?.length > 0">
+                                        <mat-option *ngFor="let departmentType of departmentTypeDS$" [value]="departmentType._id">
+                                            {{ departmentType.name }}
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <mat-label>Manager*</mat-label>
+                                <mat-select matNativeControl formControlName="managerId">
+                                    <mat-option value="">Choose Manager</mat-option>
+                                    <ng-template [ngIf]="employeeDS$?.length > 0">
+                                        <mat-option *ngFor="let manager of employeeDS$" [value]="manager._id">
+                                            {{ manager.firstName + " " + manager.lastName }}
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-select>
+                                <mat-error>This filed is mandatory.</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <mat-form-field class="matInputfield">
+                                <mat-label>Designation*</mat-label>
+                                <mat-select matNativeControl formControlName="designationId">
+                                    <mat-option value="">Choose designation</mat-option>
+                                    <ng-template [ngIf]="designationDS$?.length > 0">
+                                        <mat-option *ngFor="let designation of designationDS$" [value]="designation._id">
+                                            {{ designation.name }}
+                                        </mat-option>
+                                    </ng-template>
+                                </mat-select>
+                                <mat-error>This filed is mandatory.</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div>
+                        <span>
+                          <button
+                            mat-flat-button
+                            color="primary"
+                            type="submit"
+                            [disabled]="employeeForm.invalid"
+                          >
+                            Save
+                          </button>
+                        </span>
+                        <span class="ml5">
+                          <button mat-flat-button color="warn" (click)="onClear()">
+                            Clear
+                          </button>
+                        </span>
+                    </div>
+                </form>
+            </mat-card>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<div class="mt10">
+    <mat-accordion>
+        <mat-expansion-panel class="" [expanded]="true">
+            <mat-expansion-panel-header>
+                <div>
+                    <h3 class=".md-title">Employee List</h3>
+                </div>
+            </mat-expansion-panel-header>
+            <div *ngIf="isLoadingResults">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="employeeDS$" matSort>
+                        <ng-container matColumnDef="number">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number</th>
+                            <td mat-cell *matCellDef="let row">{{ row._id }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="active">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Active</th>
+                            <td mat-cell *matCellDef="let row">{{ row.active }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="firstName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+                            <td mat-cell *matCellDef="let row">{{ row.firstName }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="lastName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+                            <td mat-cell *matCellDef="let row">{{ row.lastName }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="startDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+                            <td mat-cell *matCellDef="let row">{{ row.startDate | date }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="orgId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Organization
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.orgId.name }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="departmentId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Department
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.departmentId.name }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="departmentTypeId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Department Type
+                            </th>
+                            <td mat-cell *matCellDef="let row">
+                                {{ row.departmentTypeId.name }}
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="designationId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                Designation
+                            </th>
+                            <td mat-cell *matCellDef="let row">{{ row.designationId.name }}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<!--  <div *ngIf="isLoadingResults">
+        <mat-table #table [dataSource]="employeeDS$" class="mat-elevation-z8">
+            <ng-container *ngFor="let disCol of displayedColumns; let colIndex = index" matColumnDef="{{ disCol }}">
+                <mat-header-cell *matHeaderCellDef>{{ disCol }}</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element[disCol] }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </div>-->

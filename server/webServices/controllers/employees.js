@@ -4,12 +4,15 @@ const Organization = require("../models/organization");
 
 exports.emp_get_all = (req, res, next) => {
     Employee.find()
-        .populate('orgId', '_id name')
+        .populate("orgId", "_id name")
+        .populate("departmentId", "_id name")
+        .populate("departmentTypeId", "_id name")
+        .populate("designationId", "_id name")
         .exec()
         .then(data => {
             const response = {
                 count: data.length,
-                employees: data
+                employee: data
             };
             res.status(200).json(response);
         })
@@ -18,25 +21,26 @@ exports.emp_get_all = (req, res, next) => {
         });
 
     /*Employee.find()
-        .exec()
-        .then(data => {
-            const response = {
-                count: data.length,
-                employees: data
-            };
-            res.status(200).json(response);
-        })
-        .catch(err => {
-            res.status(500).json({ error: err });
-        });*/
+                          .exec()
+                          .then(data => {
+                              const response = {
+                                  count: data.length,
+                                  employees: data
+                              };
+                              res.status(200).json(response);
+                          })
+                          .catch(err => {
+                              res.status(500).json({ error: err });
+                          });*/
 };
 
 exports.emp_post = (req, res, next) => {
+    console.log("in api");
     Organization.findById(req.body.orgId)
         .then(data => {
-            if (!data) res.status(500).json({ error: 'Organization not found' });
+            if (!data) res.status(500).json({ error: "Organization not found" });
             const inputJson = req.body;
-            inputJson['userName'] = inputJson['firstName'] + inputJson['lastName'];
+            console.log(JSON.stringify(inputJson));
             const employee = new Employee(inputJson);
             return employee.save();
         })
@@ -87,12 +91,12 @@ exports.emp_delete_by_ID = (req, res, next) => {
             res.status(500).json({ err: err });
         });
     /* const employeeId = req.params.employeeId;
-     Employee.remove()
-         .exec()
-         .then(data => {
-             res.status(200).json(data);
-         })
-         .catch(err => {
-             res.status(500).json({ err: err });
-         });*/
+                       Employee.remove()
+                           .exec()
+                           .then(data => {
+                               res.status(200).json(data);
+                           })
+                           .catch(err => {
+                               res.status(500).json({ err: err });
+                           });*/
 };

@@ -6,7 +6,7 @@ exports.org_get_all = (req, res, next) => {
         .then(data => {
             const response = {
                 count: data.length,
-                organizations: data
+                organization: data
             };
             res.status(200).json(response);
         })
