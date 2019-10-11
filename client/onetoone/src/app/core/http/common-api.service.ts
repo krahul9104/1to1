@@ -11,7 +11,6 @@ import { retry, catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class CommonApiService {
-  private _url: string;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -45,10 +44,9 @@ export class CommonApiService {
 
   public postRequest(url: string, obj: any) {
     console.log("in common api post");
-    return this.httpClient.post(this._url, obj);
-    /*.pipe(
+    return this.httpClient.post(url, obj).pipe(
       retry(3),
       catchError(this.handleError)
-    );*/
+    );
   }
 }
