@@ -42,8 +42,8 @@ export class CreateEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employeeForm = this.fb.group({
-      _id: ["-1"],
-      number: ["-1"],
+      //_id: ["-1"],
+      //number: ["-1"],
       active: ["true"],
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
@@ -54,7 +54,7 @@ export class CreateEmployeeComponent implements OnInit {
       departmentTypeId: ["", Validators.required],
       designationId: ["", Validators.required],
       managerId: ["", Validators.required],
-      roleId: [""]
+      roleId: ["123"]
     });
 
     this.displayedColumns = [
